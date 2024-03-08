@@ -169,7 +169,7 @@ func (s *GenStruct) GenerateColumnName() []string {
 				ColumnName string
 				StructName string
 			}{
-				{ColumnName: "id", StructName: "ID"},
+				{ColumnName: "id", StructName: "Id"},
 				{ColumnName: "created_at", StructName: "CreatedAt"},
 				{ColumnName: "updated_at", StructName: "UpdatedAt"},
 				{ColumnName: "deleted_at", StructName: "DeletedAt"},

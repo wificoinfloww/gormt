@@ -312,8 +312,8 @@ func (obj *_{{$obj.StructName}}Mgr) SelectPage(page IPage,opts ...Option) (resul
 	query :=  obj.DB.WithContext(obj.ctx).Model({{$obj.StructName}}{}).Where(options.query)
 	query.Count(&count)
 	resultPage.SetTotal(count)
-	if len(page.GetOrederItemsString()) > 0 {
-		query = query.Order(page.GetOrederItemsString())
+	if len(page.GetOrderItemsString()) > 0 {
+		query = query.Order(page.GetOrderItemsString())
 	}
 	err = query.Limit(int(page.GetSize())).Offset(int(page.Offset())).Find(&results).Error
 	{{GenPreloadList $obj.PreloadList true}}
@@ -409,7 +409,7 @@ type IPage interface {
 	SetSize(int64)                // 设置每页显示大小
 	AddOrderItem(OrderItem)       // 设置排序条件
 	AddOrderItems([]OrderItem)    // 批量设置排序条件
-	GetOrederItemsString() string // 将排序条件拼接成字符串
+	GetOrderItemsString() string // 将排序条件拼接成字符串
 	Offset() int64                // 获取偏移量
 	GetPages() int64              // 获取总的分页数
 }
@@ -464,7 +464,7 @@ func (page *Page) AddOrderItems(orderItems []OrderItem) {
 	page.orders = append(page.orders, orderItems...)
 }
 
-func (page *Page) GetOrederItemsString() string {
+func (page *Page) GetOrderItemsString() string {
 	arr := make([]string, 0)
 	var order string
 
